@@ -11,7 +11,8 @@ export default async function ready (client: Client) {
   const guild = client.guilds.cache.first()
   const channel = client.channels.cache.get(BOT_CHANEL_ID as string)
 
-  console.log('client.guilds', client.guilds)
+  console.log('guild', guild)
+  console.log('guild', client.guilds.cache)
 
   if (!channel) throw new Error(`Channel not found!`)
   if (!guild) throw new Error(`Guild not found!`)
