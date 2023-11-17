@@ -1,5 +1,5 @@
 {
-  "name": "main-discord-bot",
+  "name": "music-discord-bot",
   "version": "1.0.0",
   "description": "Backend for Discord bot for our discord server: https://discord.gg/ADFYZtJ",
   "keywords": [
@@ -9,7 +9,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ANIname/main-discord-bot.git"
+    "url": "git+https://github.com/ANIname/music-discord-bot.git"
   },
   "engines": {
     "node": ">=20.9.0"
@@ -17,9 +17,9 @@
   "author": "KiiDii <kiidii@aniname.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ANIname/main-discord-bot/issues"
+    "url": "https://github.com/ANIname/music-discord-bot/issues"
   },
-  "homepage": "https://github.com/ANIname/main-discord-bot#readme",
+  "homepage": "https://github.com/ANIname/music-discord-bot#readme",
   "devDependencies": {
     "@types/inquirer": "^8.2.10",
     "@types/lodash": "^4.14.201",

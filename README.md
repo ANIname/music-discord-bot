@@ -1,4 +1,4 @@
-# Main Discord Bot
+# Music Discord Bot
 
 ## Installation
 

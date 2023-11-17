@@ -27,9 +27,9 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           port: 22
           script: |
-            cd music-discord-bot-615643942888931329
+            cd music-discord-bot-841323371505385483
             git pull
             npm install
             rm -rf dist
             npx tsc
-            npx pm2 reload dist/src/index.js --name "music-discord-bot-615643942888931329" || BOT_CHANEL_ID=615643942888931329 DISCORD_BOT_TOKEN=${{ secrets.DISCORD_BOT_TOKEN_615643942888931329 }} npx pm2 start dist/src/index.js --name "music-discord-bot-615643942888931329"
+            npx pm2 reload dist/src/index.js --name "music-discord-bot-841323371505385483" || BOT_CHANEL_ID=841323371505385483 DISCORD_BOT_TOKEN=${{ secrets.DISCORD_BOT_TOKEN_841323371505385483 }} npx pm2 start dist/src/index.js --name "music-discord-bot-841323371505385483"

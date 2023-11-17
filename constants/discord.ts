@@ -5,8 +5,8 @@ const TOKEN_BY_ID = process.env[`DISCORD_BOT_TOKEN_${BOT_CHANEL_ID}`]
 // available channels
 export const AVAILABLE_BOTS_BY_CHANNELS = {
   'ламповый канал': '615643942888931329',
-  'внутренний круг': '841323371505385483',
-  'комната отдыха': '791227668703477770'
+  'комната отдыха': '791227668703477770',
+  'внутренний круг': '841323371505385483'
 }
 
 /**
