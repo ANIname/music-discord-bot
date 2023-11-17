@@ -27,7 +27,7 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           port: 22
           script: |
-            cd music-discord-bot-841323371505385483
+            cd music-discord-bot-841323371505385483/music-discord-bot
             git pull
             npm install
             rm -rf dist
