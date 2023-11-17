@@ -1,9 +1,8 @@
 import { Client, REST, Routes } from 'discord.js'
 import map from 'lodash/map'
 
-import commands from '../commands'
-
-const { DISCORD_BOT_TOKEN } = process.env
+import { DISCORD_BOT_TOKEN } from '../../constants/discord'
+import commands from '../commands/index'
 
 /**
  * Ready event

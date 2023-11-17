@@ -44,5 +44,5 @@
     "unicorn/prefer-top-level-await": "off"
   },
 
-  "ignorePatterns": ["node_modules", "dist", "**/*.js", "**/*.mjs"]
+  "ignorePatterns": ["node_modules", "dist"]
 }

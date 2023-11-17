@@ -20,8 +20,9 @@
     "noImplicitAny": true,
 
     /* Modules */
-    "module": "commonjs",
-    "resolveJsonModule": true,
+    "module": "CommonJS",
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
     "baseUrl": "./src",
     "outDir": "./dist",
 
@@ -36,5 +37,5 @@
     "forceConsistentCasingInFileNames": true
   },
 
-  "exclude": ["node_modules", "dist", "**/*.js", "**/*.mjs"],
+  "exclude": ["node_modules", "dist", "**/*.js"],
 }
