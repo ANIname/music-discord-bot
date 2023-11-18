@@ -46,7 +46,7 @@ jobs:
       - name: Deploy music-discord-bot-791227668703477770 using ssh
         uses: appleboy/ssh-action@master
         env:
-          BOT_CHANEL_ID: 791227668703477770
+          BOT_CHANEL_ID: "791227668703477770"
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN_791227668703477770 }}
         with:
           username: 'root'
@@ -64,7 +64,7 @@ jobs:
       - name: Deploy music-discord-bot-841323371505385483 using ssh
         uses: appleboy/ssh-action@master
         env:
-          BOT_CHANEL_ID: 841323371505385483
+          BOT_CHANEL_ID: "841323371505385483"
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN_841323371505385483 }}
         with:
           username: 'root'
