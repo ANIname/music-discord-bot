@@ -1,27 +1,20 @@
 import { joinVoiceChannel } from '@discordjs/voice'
 import { Client } from 'discord.js'
 
-const { BOT_CHANEL_ID } = process.env
+import getMainInfo from '../../utils/discord/get-main-info'
 
 /**
  * Ready event
  * @param {Client} client - Discord Client
  */
 export default async function ready (client: Client) {
-  const guild = client.guilds.cache.first()
-  const channel = client.channels.cache.get(BOT_CHANEL_ID as string)
+  const { guild, channel } = getMainInfo(client)
+  const { id: channelId } = channel
+  const { id: guildId, voiceAdapterCreator } = guild
 
-  console.log('guild', guild)
-  console.log('guild', client.guilds.cache)
+  joinVoiceChannel({ channelId, guildId, adapterCreator: voiceAdapterCreator })
 
-  if (!channel) throw new Error(`Channel not found!`)
-  if (!guild) throw new Error(`Guild not found!`)
-
-  joinVoiceChannel({
-    channelId: channel.id,
-    guildId: guild.id,
-    adapterCreator: guild.voiceAdapterCreator
-  })
+  client.user?.setStatus('invisible')
 
   console.log(`${client.user?.username} bot is ready!`)
 }
