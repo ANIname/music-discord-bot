@@ -1,0 +1,78 @@
+name: Sequential Deploy to prod environment
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    environment: prod
+    runs-on: ubuntu-latest
+
+    env:
+      BOT_FOLDER: 'music-discord-bot'
+      BOT_SCRIPT: 'dist/src/index.js'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.JS
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20.x
+
+      - name: Deploy music-discord-bot-615643942888931329 using ssh
+        uses: appleboy/ssh-action@master
+        env:
+          BOT_CHANEL_ID: 615643942888931329
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN_615643942888931329 }}
+        with:
+          username: 'root'
+          host: ${{ secrets.SERVER_HOST }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: 22
+          script: |
+            cd $BOT_FOLDER-$BOT_CHANEL_ID/$BOT_FOLDER
+            git pull
+            npm install
+            rm -rf dist
+            npx tsc
+            npx pm2 reload $BOT_SCRIPT --name "$BOT_FOLDER-$BOT_CHANEL_ID" || BOT_CHANEL_ID=$BOT_CHANEL_ID DISCORD_BOT_TOKEN=$DISCORD_BOT_TOKEN npx pm2 start $BOT_SCRIPT --name "$BOT_FOLDER-$BOT_CHANEL_ID"
+
+      - name: Deploy music-discord-bot-791227668703477770 using ssh
+        uses: appleboy/ssh-action@master
+        env:
+          BOT_CHANEL_ID: 791227668703477770
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN_791227668703477770 }}
+        with:
+          username: 'root'
+          host: ${{ secrets.SERVER_HOST }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: 22
+          script: |
+            cd $BOT_FOLDER-$BOT_CHANEL_ID/$BOT_FOLDER
+            git pull
+            npm install
+            rm -rf dist
+            npx tsc
+            npx pm2 reload $BOT_SCRIPT --name "$BOT_FOLDER-$BOT_CHANEL_ID" || BOT_CHANEL_ID=$BOT_CHANEL_ID DISCORD_BOT_TOKEN=$DISCORD_BOT_TOKEN npx pm2 start $BOT_SCRIPT --name "$BOT_FOLDER-$BOT_CHANEL_ID"
+
+      - name: Deploy music-discord-bot-841323371505385483 using ssh
+        uses: appleboy/ssh-action@master
+        env:
+          BOT_CHANEL_ID: 841323371505385483
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN_841323371505385483 }}
+        with:
+          username: 'root'
+          host: ${{ secrets.SERVER_HOST }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: 22
+          script: |
+            cd $BOT_FOLDER-$BOT_CHANEL_ID/$BOT_FOLDER
+            git pull
+            npm install
+            rm -rf dist
+            npx tsc
+            npx pm2 reload $BOT_SCRIPT --name "$BOT_FOLDER-$BOT_CHANEL_ID" || BOT_CHANEL_ID=$BOT_CHANEL_ID DISCORD_BOT_TOKEN=$DISCORD_BOT_TOKEN npx pm2 start $BOT_SCRIPT --name "$BOT_FOLDER-$BOT_CHANEL_ID"
