@@ -37,8 +37,9 @@ jobs:
             echo "Open folder ${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}/${{ env.BOT_FOLDER }}"
             cd ${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}/${{ env.BOT_FOLDER }}
             git pull
-            npm install
             rm -rf dist
+            rm -rf node_modules
+            npm install
             npx tsc
             echo "Reload pm2 ${{ env.BOT_SCRIPT }} | ${{ env.BOT_CHANEL_ID }} | ${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}"
             npx pm2 reload ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}" || BOT_CHANEL_ID=${{ env.BOT_CHANEL_ID }} DISCORD_BOT_TOKEN=${{ env.DISCORD_BOT_TOKEN }} npx pm2 start ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}"
@@ -56,8 +57,9 @@ jobs:
           script: |
             cd ${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}/${{ env.BOT_FOLDER }}
             git pull
-            npm install
             rm -rf dist
+            rm -rf node_modules
+            npm install
             npx tsc
             npx pm2 reload ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}" || BOT_CHANEL_ID=${{ env.BOT_CHANEL_ID }} DISCORD_BOT_TOKEN=${{ env.DISCORD_BOT_TOKEN }} npx pm2 start ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}"
 
@@ -74,7 +76,8 @@ jobs:
           script: |
             cd ${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}/${{ env.BOT_FOLDER }}
             git pull
-            npm install
             rm -rf dist
+            rm -rf node_modules
+            npm install
             npx tsc
             npx pm2 reload ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}" || BOT_CHANEL_ID=${{ env.BOT_CHANEL_ID }} DISCORD_BOT_TOKEN=${{ env.DISCORD_BOT_TOKEN }} npx pm2 start ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}"
