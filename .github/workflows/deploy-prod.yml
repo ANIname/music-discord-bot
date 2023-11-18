@@ -3,7 +3,7 @@ name: Sequential Deploy to prod environment
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
