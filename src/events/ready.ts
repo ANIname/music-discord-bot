@@ -7,32 +7,17 @@ import { AVAILABLE_BOTS_BY_CHANNELS } from '../../constants/discord'
 import { YOUTUBE_MUSIC_PLAYLIST_ID } from '../../constants/youtube'
 import getMainInfo from '../../utils/discord/get-main-info'
 
-type Thumbnail = {
-  url: string;
-  width: number;
-  height: number;
-}
+// TODO добавить оптимизацию что если на канале никого нет - то ставим бота на паузу 
+// TODO и когда кто-то заходит - продолжаем играть
+// TODO можно так-же отключать его от комнаты если никого нет
+// TODO и возвращать на канал если кто-то заходит
 
-type PlaylistItem = {
-  publishedAt: string;
-  channelId: string;
-  title: string;
-  description: string;
-  thumbnails?: {
-    default?: Thumbnail, 
-    medium?: Thumbnail, 
-    high?: Thumbnail, 
-    standard?: Thumbnail, 
-    maxres?: Thumbnail
-  };
-  channelTitle: string;
-  playlistId: string;
-  position: number;
-  resourceId: {
-    kind: string;
-    videoId: string;
-  };
-}
+// TODO добавить возможность пропускать песни
+// TODO добавить возможность включать песни по запросу
+// TODO добавить возможность включать песни по ссылке
+// TODO добавить возможность регулировать громкость
+
+// TODO если кто-то входит на канал впервые - приглушать бота
 
 const { BOT_CHANEL_ID, GOOGLE_API_KEY } = process.env
 
@@ -57,11 +42,7 @@ export default async function ready (client: Client) {
 
     connection.subscribe(player)
 
-    const playlistInfo = await getPlaylistInfo(GOOGLE_API_KEY as string, YOUTUBE_MUSIC_PLAYLIST_ID)
-
-    const songIndex = Math.floor(Math.random() * playlistInfo.length)
-    
-    playSong(player, playlistInfo, songIndex)
+    await playSong(player)
   }
 
   console.log(`${client.user?.username} bot is ready!`)
@@ -70,12 +51,16 @@ export default async function ready (client: Client) {
 /**
  * Play song
  * @param {AudioPlayer} player - Audio player
- * @param {PlaylistItem[]} playlistInfo - Playlist info
- * @param {number} songIndex - Song index
  */
-function playSong(player: AudioPlayer, playlistInfo: PlaylistItem[], songIndex: number) {
+async function playSong(player: AudioPlayer) {
+  const playlistInfo = await getPlaylistInfo(GOOGLE_API_KEY as string, YOUTUBE_MUSIC_PLAYLIST_ID)
+
+  const songIndex = Math.floor(Math.random() * playlistInfo.length)
+
   // eslint-disable-next-line security/detect-object-injection
   const item = playlistInfo[songIndex]
+
+  console.log(`Playing ${item?.title}`)
 
   if (!item) throw new Error('Item is not defined')
 
@@ -86,11 +71,7 @@ function playSong(player: AudioPlayer, playlistInfo: PlaylistItem[], songIndex: 
 
   player.play(resource)
 
-  player.on(AudioPlayerStatus.Idle, () => {
-    const nextSongIndex = Math.floor(Math.random() * playlistInfo.length)
-
-    playSong(player, playlistInfo, nextSongIndex)
-  })
+  player.on(AudioPlayerStatus.Idle, () => playSong(player))
 
   player.on('error', console.error)
 }
