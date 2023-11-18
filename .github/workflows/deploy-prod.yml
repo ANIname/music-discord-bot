@@ -34,14 +34,14 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           port: 22
           script: |
-            echo "Open folder ${BOT_FOLDER}-${BOT_CHANEL_ID}/${BOT_FOLDER}"
-            cd ${BOT_FOLDER}-${BOT_CHANEL_ID}/${BOT_FOLDER}
+            echo "Open folder ${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}/${{ env.BOT_FOLDER }}"
+            cd ${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}/${{ env.BOT_FOLDER }}
             git pull
             npm install
             rm -rf dist
             npx tsc
-            echo "Reload pm2 ${BOT_SCRIPT} | ${BOT_CHANEL_ID} | ${BOT_FOLDER}-${BOT_CHANEL_ID}"
-            npx pm2 reload ${BOT_SCRIPT} --name "${BOT_FOLDER}-${BOT_CHANEL_ID}" || BOT_CHANEL_ID=${BOT_CHANEL_ID} DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN} npx pm2 start ${BOT_SCRIPT} --name "${BOT_FOLDER}-${BOT_CHANEL_ID}"
+            echo "Reload pm2 ${{ env.BOT_SCRIPT }} | ${{ env.BOT_CHANEL_ID }} | ${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}"
+            npx pm2 reload ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}" || BOT_CHANEL_ID=${{ env.BOT_CHANEL_ID }} DISCORD_BOT_TOKEN=${{ env.DISCORD_BOT_TOKEN }} npx pm2 start ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}"
 
       - name: Deploy music-discord-bot-791227668703477770 using ssh
         uses: appleboy/ssh-action@master
@@ -54,12 +54,12 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           port: 22
           script: |
-            cd ${BOT_FOLDER}-${BOT_CHANEL_ID}/${BOT_FOLDER}
+            cd ${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}/${{ env.BOT_FOLDER }}
             git pull
             npm install
             rm -rf dist
             npx tsc
-            npx pm2 reload ${BOT_SCRIPT} --name "${BOT_FOLDER}-${BOT_CHANEL_ID}" || BOT_CHANEL_ID=${BOT_CHANEL_ID} DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN} npx pm2 start ${BOT_SCRIPT} --name "${BOT_FOLDER}-${BOT_CHANEL_ID}"
+            npx pm2 reload ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}" || BOT_CHANEL_ID=${{ env.BOT_CHANEL_ID }} DISCORD_BOT_TOKEN=${{ env.DISCORD_BOT_TOKEN }} npx pm2 start ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}"
 
       - name: Deploy music-discord-bot-841323371505385483 using ssh
         uses: appleboy/ssh-action@master
@@ -72,9 +72,9 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           port: 22
           script: |
-            cd ${BOT_FOLDER}-${BOT_CHANEL_ID}/${BOT_FOLDER}
+            cd ${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}/${{ env.BOT_FOLDER }}
             git pull
             npm install
             rm -rf dist
             npx tsc
-            npx pm2 reload ${BOT_SCRIPT} --name "${BOT_FOLDER}-${BOT_CHANEL_ID}" || BOT_CHANEL_ID=${BOT_CHANEL_ID} DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN} npx pm2 start ${BOT_SCRIPT} --name "${BOT_FOLDER}-${BOT_CHANEL_ID}"
+            npx pm2 reload ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}" || BOT_CHANEL_ID=${{ env.BOT_CHANEL_ID }} DISCORD_BOT_TOKEN=${{ env.DISCORD_BOT_TOKEN }} npx pm2 start ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}"
