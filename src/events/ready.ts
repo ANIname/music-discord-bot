@@ -14,7 +14,7 @@ export default async function ready (client: Client) {
 
   joinVoiceChannel({ channelId, guildId, adapterCreator: voiceAdapterCreator })
 
-  client.user?.setStatus('invisible')
+  await client.user?.setStatus('invisible')
 
   console.log(`${client.user?.username} bot is ready!`)
 }
