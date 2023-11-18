@@ -28,6 +28,7 @@ jobs:
         env:
           BOT_CHANEL_ID: "615643942888931329"
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN_615643942888931329 }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
         with:
           username: 'root'
           host: ${{ secrets.SERVER_HOST }}
@@ -42,13 +43,14 @@ jobs:
             npm install
             npx tsc
             echo "Reload pm2 ${{ env.BOT_SCRIPT }} | ${{ env.BOT_CHANEL_ID }} | ${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}"
-            npx pm2 reload ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}" || BOT_CHANEL_ID=${{ env.BOT_CHANEL_ID }} DISCORD_BOT_TOKEN=${{ env.DISCORD_BOT_TOKEN }} npx pm2 start ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}"
+            npx pm2 reload ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}" || BOT_CHANEL_ID=${{ env.BOT_CHANEL_ID }} GOOGLE_API_KEY=${{ env.GOOGLE_API_KEY }} DISCORD_BOT_TOKEN=${{ env.DISCORD_BOT_TOKEN }} npx pm2 start ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}"
 
       - name: Deploy music-discord-bot-791227668703477770 using ssh
         uses: appleboy/ssh-action@master
         env:
           BOT_CHANEL_ID: "791227668703477770"
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN_791227668703477770 }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
         with:
           username: 'root'
           host: ${{ secrets.SERVER_HOST }}
@@ -61,13 +63,14 @@ jobs:
             rm -rf node_modules
             npm install
             npx tsc
-            npx pm2 reload ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}" || BOT_CHANEL_ID=${{ env.BOT_CHANEL_ID }} DISCORD_BOT_TOKEN=${{ env.DISCORD_BOT_TOKEN }} npx pm2 start ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}"
+            npx pm2 reload ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}" || BOT_CHANEL_ID=${{ env.BOT_CHANEL_ID }} GOOGLE_API_KEY=${{ env.GOOGLE_API_KEY }} DISCORD_BOT_TOKEN=${{ env.DISCORD_BOT_TOKEN }} npx pm2 start ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}"
 
       - name: Deploy music-discord-bot-841323371505385483 using ssh
         uses: appleboy/ssh-action@master
         env:
           BOT_CHANEL_ID: "841323371505385483"
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN_841323371505385483 }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
         with:
           username: 'root'
           host: ${{ secrets.SERVER_HOST }}
@@ -80,4 +83,4 @@ jobs:
             rm -rf node_modules
             npm install
             npx tsc
-            npx pm2 reload ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}" || BOT_CHANEL_ID=${{ env.BOT_CHANEL_ID }} DISCORD_BOT_TOKEN=${{ env.DISCORD_BOT_TOKEN }} npx pm2 start ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}"
+            npx pm2 reload ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}" || BOT_CHANEL_ID=${{ env.BOT_CHANEL_ID }} GOOGLE_API_KEY=${{ env.GOOGLE_API_KEY }} DISCORD_BOT_TOKEN=${{ env.DISCORD_BOT_TOKEN }} npx pm2 start ${{ env.BOT_SCRIPT }} --name "${{ env.BOT_FOLDER }}-${{ env.BOT_CHANEL_ID }}"
