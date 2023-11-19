@@ -29,11 +29,11 @@ export default async function ready (client: Client) {
   if (!client.user) throw new Error('Client user is not defined')
 
   const { guild, channel } = getMainInfo(client)
-  const { id: channelId } = channel
+  const { id: channelId, name: channelName } = channel
   const { id: guildId, voiceAdapterCreator } = guild
 
   await client.user.setStatus('invisible')
-  await client.user.setUsername(`Music | ${BOT_CHANEL_ID}`)
+  await client.user.setUsername(`Music | ${channelName}`)
 
   if (BOT_CHANEL_ID === AVAILABLE_BOTS_BY_CHANNELS['внутренний круг']) {
     const connection = joinVoiceChannel({ channelId, guildId, adapterCreator: voiceAdapterCreator })

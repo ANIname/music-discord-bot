@@ -1,10 +1,10 @@
-import { Channel,Client, Guild } from 'discord.js'
+import { Client, Guild,VoiceChannel } from 'discord.js'
 
 const { BOT_CHANEL_ID } = process.env
 
 export interface MainInfo {
   guild: Guild
-  channel: Channel
+  channel: VoiceChannel
 }
 
 /**
@@ -19,5 +19,5 @@ export default function getMainInfo (client: Client): MainInfo  {
   if (!channel) throw new Error(`Channel not found!`)
   if (!guild) throw new Error(`Guild not found!`)
 
-  return { guild, channel }
+  return { guild, channel: channel as VoiceChannel }
 }
