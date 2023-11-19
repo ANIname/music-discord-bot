@@ -64,7 +64,10 @@ async function playSong(player: AudioPlayer) {
 
   if (!item) throw new Error('Item is not defined')
 
-  const stream = ytdl(`https://www.youtube.com/watch?v=${item.resourceId.videoId}`, { filter: 'audioonly' })
+  const stream = ytdl(`https://www.youtube.com/watch?v=${item.resourceId.videoId}`, {
+    filter: 'audioonly',
+    highWaterMark: 1<<25
+  })
   const resource = createAudioResource(stream, { inputType: StreamType.Arbitrary, inlineVolume: true, })
 
   resource.volume?.setVolume(0.05)
