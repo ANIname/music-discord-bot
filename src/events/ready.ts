@@ -53,6 +53,8 @@ export default async function ready (client: Client) {
  * @param {AudioPlayer} player - Audio player
  */
 async function playSong(player: AudioPlayer) {
+  try {
+
   const playlistInfo = await getPlaylistInfo(GOOGLE_API_KEY as string, YOUTUBE_MUSIC_PLAYLIST_ID)
 
   const songIndex = Math.floor(Math.random() * playlistInfo.length)
@@ -68,6 +70,7 @@ async function playSong(player: AudioPlayer) {
     filter: 'audioonly',
     highWaterMark: 1<<25
   })
+
   const resource = createAudioResource(stream, { inputType: StreamType.Arbitrary, inlineVolume: true, })
 
   resource.volume?.setVolume(0.05)
@@ -76,9 +79,14 @@ async function playSong(player: AudioPlayer) {
 
   player.on(AudioPlayerStatus.Idle, () => playSong(player))
 
-  player.on('error', (error) => {
-    console.log('Player Error:', error)
+  player.on('error', console.error)
+  } catch (error) {
+    if ((error as { code: string }).code !== 'ECONNRESET') {
+      console.warn(new Date().toLocaleString(), error)
 
-    playSong(player)
-  })
+      playSong(player)
+    }
+
+    console.error('Error', error)
+  }
 }
