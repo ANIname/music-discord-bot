@@ -76,5 +76,9 @@ async function playSong(player: AudioPlayer) {
 
   player.on(AudioPlayerStatus.Idle, () => playSong(player))
 
-  player.on('error', console.error)
+  player.on('error', (error) => {
+    console.log('Player Error:', error)
+
+    playSong(player)
+  })
 }
